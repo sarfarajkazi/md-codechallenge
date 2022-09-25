@@ -1,0 +1,17 @@
+{
+    "name": "sarfaraz-kazi/library-book-search",
+    "description": "Library book search which will be based on book name, author, publisher.",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Sarfaraz Kazi",
+            "email": "sarfarajkazi7@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"INC_DIR\\": "./inc"}
+    }
+}
