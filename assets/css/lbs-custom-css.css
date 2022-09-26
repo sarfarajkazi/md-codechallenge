@@ -38,3 +38,6 @@ label.end {
 #lbs_books_search_wrapper input[type=number] {
     -moz-appearance: textfield;
 }
+div#slider-range {
+    margin: 15px 10px;
+}
