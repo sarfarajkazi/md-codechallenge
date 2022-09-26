@@ -1,0 +1,40 @@
+#lbs_books_search_wrapper, #lbs_books_result {
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+}
+
+#lbs_books_result {
+    margin-top: 40px;
+}
+
+.lbs_pagination {
+    text-align: right;
+}
+
+#lbs_books_search_wrapper .lbs_books_search_head, .lbs_books_search_footer {
+    text-align: center;
+}
+
+#lbs_books_search_wrapper .lbs_select {
+    width: 100%;
+    height: 50px;
+}
+
+label.start {
+    float: left;
+}
+
+label.end {
+    float: right;
+}
+
+#lbs_books_search_wrapper input::-webkit-outer-spin-button,
+#lbs_books_search_wrapper input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#lbs_books_search_wrapper input[type=number] {
+    -moz-appearance: textfield;
+}

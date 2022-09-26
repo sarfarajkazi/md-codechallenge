@@ -13,7 +13,10 @@ final class Init
     public static function get_services()
     {
         return [
-            Core\CoreFunctions::class
+            core\CoreFunctions::class,
+            core\Enqueue::class,
+            admin\CustomFields::class,
+            front\FrontFunctions::class,
         ];
     }
 
