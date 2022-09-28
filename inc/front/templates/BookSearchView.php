@@ -4,7 +4,7 @@
     </div>
 
     <form method="get" name="lbs_search_form" id="lbs_search_form">
-
+        
         <div class="lbs_books_search_body">
             <table id="lbs_search_form">
                 <tr>
@@ -112,6 +112,8 @@
 
         </div>
         <div class="lbs_books_search_footer">
+            <input type="hidden" name="current_page_url" value="<?php echo $wp->request  ?>">
+            <input type="hidden" name="paged" id="pagination_page_no" value="<?php echo (get_query_var('paged')+1) ?>">
             <button type="submit" id="book_search_btn"><?php _e('Search', 'library-book-search') ?></button>
         </div>
     </form>
