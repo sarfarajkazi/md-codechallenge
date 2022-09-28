@@ -18,7 +18,7 @@ class FrontFunctions
     public function lbs_fetch_search_result()
     {
         $response = array(
-            'feedback' => __('There was a problem when trying to fetch state.', '7x-codegreene'),
+            'feedback' => __('There was a problem when trying to fetch state.', 'library-book-search'),
         );
 
         if (!wp_verify_nonce($_REQUEST['_wpnonce'], 'lbs-nonce')) {
