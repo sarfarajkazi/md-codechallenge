@@ -1,14 +1,18 @@
+#lbs_books_search_wrapper {
+    font-size: smaller;
+}
+
 #lbs_books_search_wrapper, #lbs_books_result {
     max-width: 800px;
     width: 100%;
     margin: auto;
 }
 
-#lbs_books_result {
+#lbs_books_search_wrapper #lbs_books_result {
     margin-top: 40px;
 }
 
-.lbs_pagination {
+#lbs_books_search_wrapper .lbs_pagination {
     text-align: right;
 }
 
@@ -16,6 +20,9 @@
     text-align: center;
 }
 
+#lbs_books_search_wrapper .lbs_books_search_body {
+    margin: 40px 0;
+}
 #lbs_books_search_wrapper .lbs_select {
     width: 100%;
     height: 50px;
