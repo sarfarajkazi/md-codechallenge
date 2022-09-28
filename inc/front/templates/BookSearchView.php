@@ -3,7 +3,7 @@
         <h3><?php _e('Book Search', 'library-book-search') ?></h3>
     </div>
 
-    <form method="get" name="lbs_records" action="//<?php echo $_SERVER['SERVER_NAME'] . $_SERVER['REDIRECT_URL'] ?>">
+    <form method="get" name="lbs_search_form" id="lbs_search_form">
 
         <div class="lbs_books_search_body">
             <table id="lbs_search_form">
@@ -16,23 +16,24 @@
                     <td><label for="lbs_book_author"><?php _e('Author', 'library-book-search') ?></label></td>
                     <td>
                         <select name="lbs_book_author" id="lbs_book_author" class="lbs_select">
-                        <?php
-                        $authors = get_terms(
-                            array(
-                                'taxonomy' => 'book-author',
-                                'hide_empty' => false,
-                            )
-                        );
-                        if ($authors) {
-                            $search_author = isset($_REQUEST['lbs_book_author']) ? $_REQUEST['lbs_book_author'] : '';
-                            foreach ($authors as $author) {
-                                ?>
-                                <option value="<?php echo $author->term_id ?>" <?php echo ($author->term_id == $search_author) ? 'selected' : '' ?> ><?php echo $author->name ?></option>
-                                <?php
+                            <option value=""><?php _e('Select author', 'library-book-search') ?></option>
+                            <?php
+                            $authors = get_terms(
+                                array(
+                                    'taxonomy' => 'book-author',
+                                    'hide_empty' => false,
+                                )
+                            );
+                            if ($authors) {
+                                $search_author = isset($_REQUEST['lbs_book_author']) ? $_REQUEST['lbs_book_author'] : '';
+                                foreach ($authors as $author) {
+                                    ?>
+                                    <option value="<?php echo $author->term_id ?>" <?php echo ($author->term_id == $search_author) ? 'selected' : '' ?> ><?php echo $author->name ?></option>
+                                    <?php
+                                }
                             }
-                        }
 
-                        ?>
+                            ?>
                         </select>
                     </td>
                 </tr>

@@ -37,4 +37,30 @@ jQuery(document).ready(function () {
         jQuery('#lbs_min_value').val(moneyFormat.from(values[0]));
         jQuery('#lbs_max_value').val(moneyFormat.from(values[1]));
     });
+
+    jQuery('#book_search_btn').click(function(e){
+        e.preventDefault();
+        $search_section = jQuery('#lbs_books_result');
+        $this = jQuery(this);
+        $form = jQuery('#lbs_search_form').serialize();
+        $send_data = { action: 'lbs_fetch_search_result',_wpnonce: lbs_frontend_object.wpnonce,search_data:$form,};
+        jQuery.ajax({
+            type: 'POST',
+            url: lbs_frontend_object.ajaxurl,
+            data: $send_data,
+            beforeSend: function (xhr) {
+                console.log('before');
+                $search_section.block({message: null, overlayCSS: {background: '#fff', opacity: 0.6}});
+            },
+            success: function (response) {
+                console.log($send_data);
+                $search_section.unblock();
+                $search_section.html($($.parseHTML(response.data.html)).filter("#lbs_books_result").html());
+            },
+            error: function(error) {
+
+            }
+        });
+    });
+
 }, jQuery);

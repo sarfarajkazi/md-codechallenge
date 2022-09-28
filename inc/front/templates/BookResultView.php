@@ -11,15 +11,15 @@
     );
 
     $search_key = isset($_REQUEST['lbs_book_name']) ? $_REQUEST['lbs_book_name'] : '';
-    if(!empty($search_key)){
+    if (!empty($search_key)) {
         $book_query['s'] = $search_key;
     }
 
     $min_price_val = isset($_REQUEST['lbs_min_value']) ? $_REQUEST['lbs_min_value'] : '';
     $max_price_val = isset($_REQUEST['lbs_max_value']) ? $_REQUEST['lbs_max_value'] : '';
 
-    if(!empty($min_price_val) && !empty($max_price_val) ){
-        $book_query['meta_query'][] =array(
+    if (!empty($min_price_val) && !empty($max_price_val)) {
+        $book_query['meta_query'][] = array(
             'key' => 'lbs_price_field',
             'value' => [$min_price_val, $max_price_val],
             'compare' => 'BETWEEN',
@@ -28,7 +28,7 @@
     }
 
     $lbs_rating_field = isset($_REQUEST['lbs_rating_field']) ? $_REQUEST['lbs_rating_field'] : '';
-    if($lbs_rating_field){
+    if ($lbs_rating_field) {
         $book_query['meta_query'][] = array(
             'key' => 'lbs_rating_field',
             'value' => $lbs_rating_field,
@@ -38,16 +38,16 @@
     }
 
     $lbs_book_publisher = isset($_REQUEST['lbs_book_publisher']) ? $_REQUEST['lbs_book_publisher'] : '';
-    if($lbs_book_publisher){
-        $book_query['tax_query'][] =   array(
+    if ($lbs_book_publisher) {
+        $book_query['tax_query'][] = array(
             'taxonomy' => 'book-publisher',
             'field' => 'term_id',
             'terms' => $lbs_book_publisher
         );
     }
     $lbs_book_author = isset($_REQUEST['lbs_book_author']) ? $_REQUEST['lbs_book_author'] : '';
-    if($lbs_book_author){
-        $book_query['tax_query'][] =   array(
+    if ($lbs_book_author) {
+        $book_query['tax_query'][] = array(
             'taxonomy' => 'book-author',
             'field' => 'term_id',
             'terms' => $lbs_book_author
@@ -95,7 +95,18 @@
                         echo implode(',', $book_publishers_with_link);
                         ?>
                     </td>
-                    <td><?php echo get_post_meta(get_the_ID(), 'lbs_rating_field', true) ?></td>
+                    <td>
+                        <?php $stars = get_post_meta(get_the_ID(), 'lbs_rating_field', true) ?>
+                        <div class="stars">
+                            <?php
+                            for ($i = 1; $i <= $stars; $i++) {
+                                ?>
+                                <div class="star" title="<?php echo $i ?>"></div>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                    </td>
                 </tr>
                 <?php
                 $index++;
@@ -105,17 +116,15 @@
 
         <?php
         echo "<div class=\"lbs_pagination\">";
-        $big = 999999999;
         echo paginate_links(array(
-            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+            'base' => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
             'format' => '?paged=%#%',
             'current' => max(1, get_query_var('paged')),
             'total' => $books->max_num_pages
         ));
-        echo "</nav>";
-    }
-    else{
-        echo '<p class="lbs_no_record_found"><label>'.__('No matching record founds','library-book-search').'</label></p>';
+        echo "</div>";
+    } else {
+        echo '<p class="lbs_no_record_found"><label>' . __('No matching record founds', 'library-book-search') . '</label></p>';
     }
     wp_reset_query();
     ?>
